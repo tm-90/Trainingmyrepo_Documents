@@ -1401,6 +1401,7 @@ Source Code:
 echo "Bash Scripting Bash Language" | sed 's/Bash/Perl/'
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Linux is a free and opensource 
 
 
 
