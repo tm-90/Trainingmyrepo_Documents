@@ -1,0 +1,747 @@
+
+#######################
+Day 36: 20th Sep. 2024
+#######################	
+
+Kubernetes ::::
+
+	Environments 
+	
+	Non-Prod-Environments												Prod-Environment
+	
+		DEV 
+		
+		BUILD 		
+		
+		QA 		==> docker pull/run
+		
+		UAT 	==> docker pull/run 			=========>					PROD_Server1	==> docker pull/run		--> LIVE Server!
+																			PROD_Server2	==> docker pull/run
+																			PROD_Server3	==> docker pull/run
+																			PROD_Server4	==> docker pull/run
+																			PROD_Server5	==> docker pull/run
+		
+		
+	Kubernetes ::::
+	
+		- It is a Open-Source Container Orchestration Tool 
+		- Kubernetes is used to Deploy any type of Containers.
+		- It is used to ensure high availability of the Applications/services running thru Containers.
+		- Used to Ensure High Availability of Containers by creating Replicas of Containers.
+		- It supports Auto-Scaling & Load Balancing.
+		- Self-Healing
+		
+	
+		Kubernetes Architecture :::
+		
+			- Client/Server Architecture
+			
+			
+		Kubernetes_Master					# Used to Create and Schedule the Deployments to Kubernetes_WorkNodes
+		
+			Kubernetes_WorkNode1			# Target Servers 
+			Kubernetes_WorkNode2
+			Kubernetes_WorkNode3
+			Kubernetes_WorkNode4
+			Kubernetes_WorkNode5
+			
+			
+		Kubernetes Architecture
+			Kubernetes_Master					# Used to Create and Schedule the Deployments to Kubernetes_WorkNodes
+			
+				Kubernetes_WorkNode1			# Target Servers 
+				Kubernetes_WorkNode2
+				Kubernetes_WorkNode3
+		
+		
+		
+		Kubernetes Components ::::
+
+			API_Server 				--> # Acts as an interface to the kubernetes 
+			
+			ETCD 					--> # Single point of Source for Kubernetes Components 
+			
+			Scheduler				--> # To identify the Healthy Node for Deployments
+			
+			Controller Manager 		--> # To run the pods in its desired state 
+			
+			
+			Kubelet 				--> # Is a Kubernetes Agent used to Create & Deploy the Pods
+			
+			KubeProxy				--> # Is used to enable pod networking by create Pod IP Address			
+			
+			CRI - Container RunTime Interface (Container-D)
+									--> # It is used identify the Image from Container Registry for deployment
+				
+				
+		
+		Kubernetes Concepts / Terminologies ::::
+		
+		
+			Kubernetes_Master			# Used to Create and Schedule the Deployments to Kubernetes_WorkNodes
+			
+			Kubernetes_WorkNodes		# Target Servers 
+
+			Kubectl 					# Is Command Line Utility, used to interact with Kubernetes Master 
+			
+			Container Images 
+				--	Is a Static file that defined the properties of the Container and its dependencies 
+				--  Container Images are Non-Executables
+				--  Container Images are composed of various Layers created using the Dockerfile Instructions
+				
+			Containers 
+				--	Containers are the executable units of Container Images
+				-- 	Containers are used to run the applications defined in the Container Images 		
+			
+			Container Registry 
+				--	It is used to save and version control the Container Images 
+					Dockerhub is Container Registry to be used.
+					https://hub.docker.com/			
+			
+			Container Repositories
+				--	Container Repositories	are the subset of Container Registry
+			
+			
+			Pod							# Is Atomic Unit of Schedule - Any Smalled Task you run in Kubernetes is executed as Pod.
+										# Used to Run the Container(s)
+										# As a best practise, it is recommended to have One Container in a Pod.
+			
+			Kubelet 					# Is a Kubernetes Agent used to Create & Deploy the Pods
+			
+			CRI 						# Container Run-Time Interface - "Container-D"
+										# It is used identify the Image from Container Registry for deployment
+			
+		
+			Manifest File				# Is a AppConfig file, that defines the properties of the pods to be deployed in kubernetes
+										# It is written using *.yaml/*.json format by the developers and maintained in the Source Code Repositories during CICD Pipeline Automation Process 
+		
+		
+			Cluster 					# Is collection of WorkerNodes 
+			
+				
+				Kubernetes_Master		
+				
+					Kubernetes_Cluster
+						Kubernetes_WorkNode1
+						Kubernetes_WorkNode2
+						Kubernetes_WorkNode3
+						
+				Kubernetes_Master		
+				
+					Kubernetes_Cluster1
+						Kubernetes_WorkNode1
+						Kubernetes_WorkNode2
+						Kubernetes_WorkNode3				
+
+					Kubernetes_Cluster2
+						Kubernetes_WorkNode1
+						Kubernetes_WorkNode2
+						Kubernetes_WorkNode3	
+
+				Kubernetes_Master
+					Kubernetes_Master1		
+					
+						Kubernetes_Cluster1
+							Kubernetes_WorkNode1
+							Kubernetes_WorkNode2
+							Kubernetes_WorkNode3				
+
+						Kubernetes_Cluster2
+							Kubernetes_WorkNode1
+							Kubernetes_WorkNode2
+							Kubernetes_WorkNode3
+
+					Kubernetes_Master2		
+					
+						Kubernetes_Cluster1
+							Kubernetes_WorkNode1
+							Kubernetes_WorkNode2
+							Kubernetes_WorkNode3				
+
+						Kubernetes_Cluster2
+							Kubernetes_WorkNode1
+							Kubernetes_WorkNode2
+							Kubernetes_WorkNode3
+
+						
+		Core Kubernetes Concepts :::
+		
+			Pods 
+			
+			Kubectl 
+				
+				Syntax:
+				
+					kubectl <command> <Kubernetes_Object_Type> <Name> <Parameters/Flag>
+			
+					kubectl get pods mypod1 -o wide
+					
+					kubectl get Deployment mydeploy 
+					
+					Eg.: Kubectl Commands :
+					
+					create / get / exec / expose / describe
+					
+					
+			Controller Object 
+				ReplicaSet 
+				Deployment 
+			
+			Services
+				NodePort Service 
+				ClusterIP 
+				LoadBalancer
+
+			Volumes
+				HostPath Volumes 
+			
+			Namespaces 
+		
+		
+Next ::
+		
+		Installation & Configuration of Kubernetes_Master & Kubernetes_WorkNodes 
+
+		Working with Kubernetes Objects / Concepts 
+
+
+#######################
+Day 37: 23rd Sep. 2024
+#######################	
+
+	
+	Installation & Configuration of Kubernetes_Master & Kubernetes_WorkNodes 
+
+	Managed Services :	- Paid Service!
+	
+		AWS 	- ECS/ECR/EKS 
+		
+		Azure 	- ACS/ACR/AKS 
+		
+		GCP 	- GCR/GKE	
+		
+	
+	Open-Source Kubernetes :::
+	
+		https://kubernetes.io/docs/setup/production-environment/tools/kubeadm/
+		
+		
+		Kubernetes_Master			(VM)
+			Kubernetes_WorkNode1	(VM)
+			Kubernetes_WorkNode2	(VM)
+			
+			
+		Minikube 		--> 	1 Node Configuration
+			VM -> 
+			
+		Kubeadm -->
+		
+		
+	Installation of Kubernetes using Kubeadm :::	
+	
+		1. Launch 3 VMs on AWS Cloud (Ubuntu v22.04) --> (1 Master Node, 2 WorkerNodes)
+		
+		In all the Nodes(i.e., Master Node and WorkerNodes):
+		
+			2. Allow all traffic for all the nodes - just for this demo
+			3. Change the HostName of all the Nodes
+			4. Disable swap configuration in all the nodes
+			5. Install Docker in all the nodes
+			6. Install CRI - 'Container-D' in all the nodes
+			7. Install Kubeadm,kubelet,kubectl 
+			8. Enable Kubelet	
+		   
+		Only on Master Node:
+		
+			9. Execute Kubeadm Init Command 		# To initialize Kubernetes Master Node
+			10. Enable user Access to Kubernetes
+			11. Install flannel Network plugins for kubeproxy
+
+		Only on WorkerNodes:		
+		
+			12. Execute Kubeadm Join Command 		# To attach the Worknodes with Kubernetes Master Node.
+			
+				kubeadm join 172.31.8.101:6443 --token 7nd74g.qf0o7ntrb9im3hqr \
+        --discovery-token-ca-cert-hash sha256:20a690f48ba814666bf93da0a3460e53b46992e339a515bc2dd4f4a1bbf5d4b1
+
+		
+	Deploy a new pod in Kubernetes cluster :::
+	
+	1. Write a manifest file - save as *.yaml 
+	
+		- Yaml files are based on key:value pairs 
+	
+	2. Use kubectl command to create/deploy the pod using the manifest file
+	
+	
+
+
+How to install and configure kubernetes Master and workernodes 
+
+Write a manifest file to create a pod 
+
+Using kubectl to create a pod 
+
+get/describe/login
+
+expose pod using nodeport services 
+
+access the application running inside the pod using web browser
+
+delete pod and svc 
+
+
+Next :: 
+
+	Controller Object 
+		ReplicaSet 
+		Deployment 
+	
+	Services
+		NodePort Service 
+		ClusterIP 
+		LoadBalancer
+
+	Volumes
+		HostPath Volumes 
+	
+	Namespaces 
+
+
+
+#######################
+Day 38: 25th Sep. 2024
+#######################	
+
+	Controller Object :::
+		ReplicaSet 
+		Deployment 
+
+
+	ReplicaSet :::
+	
+		--> Replicaset is used to execute the specific no. of pods in the cluster.
+		--> Replicaset uses the Set Based Operator
+		--> Used to replicate the pods and able to scale up/down
+		--> The Replicasets will be automatically created, while creating Deployment Controller Object.
+	
+	Deployment Controller Object :::
+	
+		--> It is used to deploy the pods and ensure high availability of pods by creating pod replicas 
+		--> 1. Create Muliple instance/replicas/copies of pods 
+			2. Used to Scale-Up / Scale-Down the Pods 
+			3. Used to Upgrade the application pods 
+			4. Used to Down-grade/roll-back the application pods
+		--> The upgrade/down-grade of application pods can be done without any downtime. 
+		--> To achieve zero-downtime during upgrade/down-grade, By Default, it used Rolling-Update Deployment Strategy.
+		
+	UseCase :::
+	
+		- Deploy 3 instance pod using Deployment Controller Object 	--> Nginx_previous_version
+		- 
+		
+		
+	Output ::
+	
+		- Deployment Object 
+		
+		- Replicaset 
+		
+		- Pods 
+	
+	
+	Web Application :::
+	
+		Launched a Website!
+		
+			--> 3 instances of pod to deploy this application 
+			
+				100 Users can access my application 
+				
+				1000 ++++
+				2000 ++++
+				
+				
+				Scale-up the pod instances !
+				Scale-down the pod instances !
+	
+#######################
+Day 39: 26th Sep. 2024
+#######################	
+
+	Deployment Controller Object :::
+	
+		--> It is used to deploy the pods and ensure high availability of pods by creating pod replicas 
+		--> 1. Create Muliple instance/replicas/copies of pods 
+			2. Used to Scale-Up / Scale-Down the Pods 
+			3. Used to Upgrade the application pods 
+			4. Used to Down-grade/roll-back the application pods
+		--> The upgrade/down-grade of application pods can be done without any downtime. 
+		--> To achieve zero-downtime during upgrade/down-grade, By Default, it used Rolling-Update Deployment Strategy.	
+
+	
+
+		- Upgrade the application pods 
+		- Down-grade/roll-back the application pods
+		
+		
+	What is the need for Kubectl describe Command ???
+	
+	- Kubectl Describe Command is used to capture the complete information about the kubenetes objects
+	- Kubectl Describe Command provides the complete list of events based on the kubernetes object. 
+	- Kubectl Describe Command is used to diagonize/debug/analyze the kubernetes objects 
+
+
+
+	Developer created --> webappimg:v1.0 ==> Publish to container Registry	==> Deployed to kubernetes
+	Developer created --> webappimg:v2.0 ==> Publish to container Registry	==> Deployed to kubernetes
+	
+	
+	Deployment Strategy :::
+	
+		nginx-deploy ---> nginx:stable-otel(v1.0)	# Current version of Application Image 
+		
+			pod1	---> nginx:stable-otel(v1.0)		# Current version of Application Image
+			pod2	---> nginx:stable-otel(v1.0)		# Current version of Application Image
+			pod3 	---> nginx:stable-otel(v1.0)		# Current version of Application Image
+	
+	
+	
+
+		Upgrade the Application Image from nginx:stable-otel(v1.0) to nginx:stable-pearl(v2.0)
+
+		nginx-deploy ---> nginx:stable-pearl(v2.0)	# Current version of Application Image 
+
+			pod1	---> nginx:stable-pearl(v2.0)		# Current version of Application Image
+			pod2	---> nginx:stable-pearl(v2.0)		# Current version of Application Image
+			pod3 	---> nginx:stable-pearl(v2.0)		# Current version of Application Image
+
+
+		--> To achieve zero-downtime during upgrade/down-grade, By Default, it used Rolling-Update Deployment Strategy.	
+
+		During the Upgrade, if anything goes wrong, we can quickly roll-back to previous version
+		
+		
+		First will see how to deploy any new version of image, for roll-back 
+
+
+		roll-back - When will go for roll-back ???
+		
+			Whenever the deployment fails, will go for roll-back/undo the changes 
+		
+			when pod is not running as expected
+			when we need to use previous version 
+			
+			
+			
+	Kubernetes Services :::
+	
+		Services are used to enable the communication to the pods :::
+		
+		
+		- Cluster-IP Service:
+			- It is used to enable the communication between the pods within the cluster 
+		
+		- Node-Port Service 
+			- It is used to expose the pods to internet
+			- Uses the port range : 30000 to 32767 
+		
+		- Load Balancer Service
+
+			- Is used to reduce the number of IPs address to be maintained for NodePort Service.
+			
+			- Load Balancer Service Created on top of the NodePort Service, will receives the request from end user thru internet and Route the request the corresponding nodeport service and access the pod within that.		
+		
+		
+		3-tier application :
+		
+			- Front-End
+			
+			- Application-Layer 
+			
+			- Data-Base Layer
+			
+			
+Next :::
+
+	Volume - Kubernetes Hostpath Volume
+
+	Kubernetes Namespaces
+
+	Demo : Using this Deployment controller Object and Service : using jenkins.
+	
+	
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: loksai-eta-deploy
+  labels:
+    app: loksai-eta-deploy-lbl
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: loksai-eta-app
+  template:
+    metadata:
+      labels:
+        app: loksai-eta-app
+    spec:
+      containers:
+      - name: loksai-eta-container
+        image: loksaieta/loksai-eta-app
+        ports:
+        - containerPort: 8080
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: loksai-eta-np-service
+  labels:
+    app: loksai-eta-app
+spec:
+  selector:
+    app: loksai-eta-deploy-lbl
+
+  type: NodePort
+  ports:
+  - nodePort: 31028
+    port: 8080
+    targetPort: 8080
+
+
+
+#######################
+Day 40: 27th Sep. 2024
+#######################
+
+	Kubenetes Namespaces :::
+		
+	Kubernetes Volumes :::
+	
+	Kubernetes Integration with Jenkins - Demo
+
+
+	- Kubernetes Volumes :::
+	
+		Persistant Volumes ::
+		
+			--> Is used to maintain the persistant data.
+			
+		Hostpath Volume :::
+		
+			- Same as Docker Volume.
+			
+			- Difference is hostpath volume is created at the pod level not at the container level.
+			
+			- Used to pass the input files to pods and restore the output from pods.
+			
+			
+	
+	- Kubernetes Namespace :::
+	
+		- Is the Logical Partition of Kubernetes Cluster
+		
+		
+		Environments:
+		
+			Dev 
+			
+			QA 
+			
+			UAT 
+			
+			Prod 
+			
+		kubectl create namespace dev 			# Create Namespace
+	
+vi nginx-devpod.yaml
+	
+apiVersion: v1
+kind: Pod
+metadata:
+  name: nginx-pod
+  namespace: appteam2
+  labels:
+    app: nginx
+    tier: dev
+spec:
+  containers:
+  - name: nginx-container
+    image: nginx
+
+    ports:
+    - containerPort: 80
+			
+			kubectl create -f nginx-devpod.yaml
+			
+			kubectl get pods --namespace=dev
+			
+			kubectl get pods --all-namespaces
+			
+			kubectl delete pod nginx-pod --namespace=dev			# Used to delete the pod created in this namespace
+			
+	Note: During real-Project Discussion, will show how to use kubernetes namespaces 
+	
+	
+	
+	Kubernetes Integration with Jenkins - Demo ::::
+	
+	Project: 
+
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: loksai-eta-deploy
+  labels:
+    app: loksai-eta-deploy-lbl
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: loksai-eta-app
+  template:
+    metadata:
+      labels:
+        app: loksai-eta-app
+    spec:
+      containers:
+      - name: loksai-eta-container
+        image: loksaieta/sa-wd-webapp
+        ports:
+        - containerPort: 8080
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: loksai-eta-np-service
+  labels:
+    app: loksai-eta-app
+spec:
+  selector:
+    app: loksai-eta-deploy-lbl
+
+  type: NodePort
+  ports:
+  - nodePort: 31028
+    port: 8080
+    targetPort: 8080
+
+
+	How to implement this using Jenkins CICD Pipeline :
+	
+	
+	
+	Objective :::
+	
+		Jenkins pipeline, perform application build, create container images,  Publish application image to Container registry and deploy to kubernetes cluster 
+		
+		
+	Resources - Servers/Tools Needed :
+	
+	
+		Servers :::
+		
+			Jenkins_Master													--> # To create CICD Pipeline Jobs and schedule it to run in Slave Nodes
+			
+				Build_Server-Jenkins_Slave 									--> # Compile the Source Code 
+				(Perform Application Build and Docker Build)					# Perform Unit Testing 
+																				# Create Artifacts 
+																				# Create Application Image 
+																				# Publish Application Image to DockerHub Registry
+			
+			Kubernetes_Master												--> Schedule Pod Deployments 
+				Kubernetes_WorkNode1										--> Execute the Pods 
+				Kubernetes_WorkNode2										--> Execute the Pods
+
+			
+		Tools ::::
+	
+			Jenkins_Master						--->	# jdk, jenkins, git 
+            	Build_Server-Jenkins_Slave 		--->	# git, jdk, maven, docker
+			Kubernetes_Master					---> 	# All Kubernetes Components
+            	Kubernetes_WorkNode1
+            	Kubernetes_WorkNode2
+
+		Maintain DockerHub Credentials in the Jenkins Credential Manager 
+			goto jenkins dashboard 
+				-- Manage Jenkins 
+					-- Credential 
+						-- using dockerhub username and access token 	
+						
+		
+		
+		Integration of Kubernetes Master Node with Jenkins Master Node.
+		
+			- Using Publish over ssh plugins, integrate Kubernetes_Master Node to Jenkins Master Node
+			- And Execute kubectl create command using Publish over ssh plugins
+			
+			--> 1. Create a devopsadmin - User in Kubernetes_Master
+			--> 2. Create SSH Keys to devopsadmin - User
+			--> 3. Ensure that devopsadmin - User have access to execute kubectl commands
+			--> 4. Use, the Kubernetes - Master Node's - Private IP Address,User_Name and Credential to config in Jenkins - Publish Over SSH
+			--> 5. Create a Pipeline Deployment Stage using Publish Over SSH Plugins step
+					- To copy the kubernetes manifest file - *.yaml file from jenkins_Slave Node to Kubernetes Master Node.
+					- To execute a command : kubectl create -f kdeploy.yaml
+					
+	
+							kubectl create -f kdeploy.yaml			# Used to create a new kubernetes object 
+							
+							kubectl apply -f kdeploy.yaml			# Used to create/replace a kubernetes object 
+	
+	
+sshPublisher(publishers: [sshPublisherDesc(configName: 'SA_WD_Kubernetes_Master', transfers: [sshTransfer(cleanRemote: false, excludes: '', execCommand: 'kubectl apply -f kubedeploy.yaml', execTimeout: 120000, flatten: false, makeEmptyDirs: false, noDefaultExcludes: false, patternSeparator: '[, ]+', remoteDirectory: '.', remoteDirectorySDF: false, removePrefix: '', sourceFiles: '*.yaml')], usePromotionTimestamp: false, useWorkspaceInPromotion: false, verbose: false)])
+	
+	
+pipeline {
+     agent { label 'slave1' }
+
+	environment {	
+		DOCKERHUB_CREDENTIALS=credentials('dockerloginid')
+	}
+		
+    stages {
+        stage('SCM_Checkout') {
+            steps {
+                echo 'Perform SCM Checkout'
+                git 'https://github.com/SA-AWS-DevOps-July24/java-mvn-springbootapp.git'
+            }
+        }
+        stage('Application Build') {
+            steps {
+                echo 'Perform Application Build'
+                sh 'mvn clean package'
+            }
+        }
+        stage('Docker Build') {
+            steps {
+                echo 'Perform Docker Build'
+				sh "docker build -t loksaieta/sa-wd-webapp:${BUILD_NUMBER} ."
+				sh "docker tag loksaieta/sa-wd-webapp:${BUILD_NUMBER} loksaieta/sa-wd-webapp:latest"
+				sh 'docker image list'
+            }
+        }
+        stage('Login to Dockerhub') {
+            steps {
+                echo 'Login to DockerHub'				
+				sh 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'
+                
+            }
+        }
+        stage('Publish the Image to Dockerhub') {
+            steps {
+                echo 'Publish to DockerHub'
+				sh "docker push loksaieta/sa-wd-webapp:latest"                
+            }
+        }
+        stage('Deploy to Kubernetes Cluster') {
+            steps {
+				script {
+				sshPublisher(publishers: [sshPublisherDesc(configName: 'SA_WD_Kubernetes_Master', transfers: [sshTransfer(cleanRemote: false, excludes: '', execCommand: 'kubectl apply -f kubedeploy.yaml', execTimeout: 120000, flatten: false, makeEmptyDirs: false, noDefaultExcludes: false, patternSeparator: '[, ]+', remoteDirectory: '.', remoteDirectorySDF: false, removePrefix: '', sourceFiles: '*.yaml')], usePromotionTimestamp: false, useWorkspaceInPromotion: false, verbose: false)])
+			}				          
+            }
+        }
+    }
+}	
+
